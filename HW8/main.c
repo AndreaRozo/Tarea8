@@ -7,13 +7,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include <functions.h>
+#include "functions.h"
+
 
 int main(int argc, char **argv)
 {
-	if(arcg != 8)
+	if(argc != 8)
 	{
-		printf ("Numero de parametros incorrecto");
+		printf ("Número de parametros incorrecto \n");
 		exit(1);
 	}
 
@@ -29,6 +30,11 @@ int main(int argc, char **argv)
 
 	int n_points_t = (tf-t0)/dt;
 	int n_points_x = (xf-x0)/dx;
+
+	FILE *fileout;
+
+	printf("puntos t: %d\n", n_points_t);
+	printf("puntos x: %d\n", n_points_x);
 
 	double a = dt/(dx*dx);  // alpha
 	
@@ -49,6 +55,12 @@ int main(int argc, char **argv)
 		printf ("Error al crear los arreglos");
 		exit(1);
 	}
+
+	// Creación del vector de tiempo
+	for (i = 0; i < n_points_t; i++)
+	{
+		t[i] = t0 + i*dt;
+	}	
 
 	// Creación de los vectores de posición
 	for (i = 0; i < n_points_x; i++)
@@ -71,7 +83,7 @@ int main(int argc, char **argv)
 		printf ("Condición inicial no válida");
 		exit(1);
 	}
-
+	
 	// Iteraciones - condición inicial
 	for (i = 0; i < n_points_x; i++)
 	{
@@ -80,12 +92,13 @@ int main(int argc, char **argv)
 
 	//condiciones de frontera
 	u_new [0] = 0.0;
-	u_new [n_points-1] = 0.0;
+	u_new [n_points_x-1] = 0.0;
 	u_old [0] = 0.0;
-	u_old [n_points-1] = 0.0;
+	u_old [n_points_x-1] = 0.0;
+	
+
 	for (j = 0; j < n_points_t; j++)
 	{
-		
 		for (i = 1; i < n_points_x-1; i++)
 		{
 			u_new[i] = a*u_old[i+1] + (1-2*a)*u_old[i] + a*u_old[i-1];
@@ -96,26 +109,26 @@ int main(int argc, char **argv)
 		}
 		if (j%(n_points_t/10) == 0)
 		{
-			FILE *out;
+			printf("%d\n",j/(n_points_t/10));
 			char nombreArchivo[256] = "Grafica";
 			char num[5];
-			sprintf(num,"%f",t[j]);
+			sprintf(num,"%d",j);
 			strcat(nombreArchivo,num);
-			strcat(nombreArchivo,"_CondicionInicial");
+			strcat(nombreArchivo,"_CondIn");
 			sprintf(num,"%d",condIni);
 			strcat(nombreArchivo,num);
 			strcat(nombreArchivo,".txt");
-			out = fopen(nombreArchivo,'w');
-
-			for (i = 1; i < n_points_x-1; i++)
+			printf("nombre: %s\n",nombreArchivo);
+			fileout = fopen(nombreArchivo,"w");
+			for (i = 0; i < n_points_x; i++)
 			{
-				fprintf(out,"%f		%f\n",x[i],u_new[i]);
+				printf("%f	%f\n",x[i],u_new[i]);
+				fprintf(fileout,"%f	%f\n",x[i],u_new[i]);
 			}
-			
-			fclose(out);
+			fclose(fileout);
 		}			
 
 	}
+}
 
-	
 
