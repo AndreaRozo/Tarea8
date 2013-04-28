@@ -35,6 +35,7 @@ int main(int argc, char **argv)
 
 	printf("puntos t: %d\n", n_points_t);
 	printf("puntos x: %d\n", n_points_x);
+	printf("CondIni: %d\n", condIni);
 
 	double a = dt/(dx*dx);  // alpha
 	
@@ -68,12 +69,12 @@ int main(int argc, char **argv)
 		x[i] = x0 + i*dx;
 	}
 
-	if (condIni = 1)
+	if (condIni == 1)
 	{
 		f1(n_points_x, x, u_init);
 	}
 	
-	else if (condIni = 2)
+	else if (condIni == 2)
 	{
 		f2(n_points_x, x, u_init);
 	}
@@ -95,7 +96,7 @@ int main(int argc, char **argv)
 	u_new [n_points_x-1] = 0.0;
 	u_old [0] = 0.0;
 	u_old [n_points_x-1] = 0.0;
-	
+	printf("CondIni: %d\n", condIni);
 
 	for (j = 0; j < n_points_t; j++)
 	{
@@ -109,20 +110,17 @@ int main(int argc, char **argv)
 		}
 		if (j%(n_points_t/10) == 0)
 		{
-			printf("%d\n",j/(n_points_t/10));
 			char nombreArchivo[256] = "Grafica";
 			char num[5];
-			sprintf(num,"%d",j);
+			sprintf(num,"%d",j/(n_points_t/10));
 			strcat(nombreArchivo,num);
 			strcat(nombreArchivo,"_CondIn");
 			sprintf(num,"%d",condIni);
 			strcat(nombreArchivo,num);
 			strcat(nombreArchivo,".txt");
-			printf("nombre: %s\n",nombreArchivo);
 			fileout = fopen(nombreArchivo,"w");
 			for (i = 0; i < n_points_x; i++)
 			{
-				printf("%f	%f\n",x[i],u_new[i]);
 				fprintf(fileout,"%f	%f\n",x[i],u_new[i]);
 			}
 			fclose(fileout);
