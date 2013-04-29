@@ -62,12 +62,20 @@ int main(int argc, char **argv)
 	{
 		t[i] = t0 + i*dt;
 	}	
-
+	
 	// Creación de los vectores de posición
+	char nombre[256] = "VectorX_CondIn";
+	char numb[5];
+	sprintf(numb,"%d",condIni);
+	strcat(nombre,numb);
+	strcat(nombre,".txt");
+	fileout = fopen(nombre,"w");
 	for (i = 0; i < n_points_x; i++)
 	{
 		x[i] = x0 + i*dx;
+		fprintf(fileout,"%f\n",x[i]);
 	}
+	fclose(fileout);
 
 	if (condIni == 1)
 	{
@@ -110,7 +118,7 @@ int main(int argc, char **argv)
 		}
 		if (j%(n_points_t/10) == 0)
 		{
-			char nombreArchivo[256] = "Grafica";
+			char nombreArchivo[256] = "Graf";
 			char num[5];
 			sprintf(num,"%d",j/(n_points_t/10));
 			strcat(nombreArchivo,num);
@@ -121,12 +129,12 @@ int main(int argc, char **argv)
 			fileout = fopen(nombreArchivo,"w");
 			for (i = 0; i < n_points_x; i++)
 			{
-				fprintf(fileout,"%f	%f\n",x[i],u_new[i]);
+				fprintf(fileout,"%f\n",u_new[i]);
 			}
 			fclose(fileout);
 		}			
 
 	}
+	return 0;
 }
-
 
