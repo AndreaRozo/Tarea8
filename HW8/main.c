@@ -1,4 +1,4 @@
-// Universidad de los Andes
+﻿// Universidad de los Andes
 // Andrés Felipe García Albarracín
 // Andrea Rozo Méndez
 // Tarea 8
@@ -135,6 +135,45 @@ int main(int argc, char **argv)
 		}			
 
 	}
+
+	//Creación del archivo para graficar
+	FILE *out;
+	out = fopen("graphs.gp",'w');
+	fprintf(out,"set terminal jpeg\n");
+	fprintf(out,"set output 'GraficaCondInicial1.jpg'\n");
+	fprintf(out,"set title "Caso 1"\n");
+	fprintf(out,"set xlabel "x"\n");
+	fprintf(out,"set ylabel "u"\n");
+	fprintf(out,"plot 'cond1.txt' using 1:2\n");
+	fprintf(out,"replot 'cond1.txt' using 1:3\n");
+	fprintf(out,"replot 'cond1.txt' using 1:4\n");
+	fprintf(out,"replot 'cond1.txt' using 1:5\n");
+	fprintf(out,"replot 'cond1.txt' using 1:6\n");
+	fprintf(out,"replot 'cond1.txt' using 1:7\n");
+	fprintf(out,"replot 'cond1.txt' using 1:8\n");
+	fprintf(out,"replot 'cond1.txt' using 1:9\n");
+	fprintf(out,"replot 'cond1.txt' using 1:10\n");
+	fprintf(out,"replot 'cond1.txt' using 1:11\n");
+	fprintf(out,"replot 'cond1.txt' using 1:12\n");
+
+	fprintf(out,"set output 'GraficaCondInicial2.jpg'\n");
+	fprintf(out,"set title "Caso 2"\n");
+	fprintf(out,"set xlabel "x"\n");
+	fprintf(out,"set ylabel "u"\n");
+	fprintf(out,"plot 'cond2.txt' using 1:2\n");
+	fprintf(out,"replot 'cond2.txt' using 1:3\n");
+	fprintf(out,"replot 'cond2.txt' using 1:4\n");
+	fprintf(out,"replot 'cond2.txt' using 1:5\n");
+	fprintf(out,"replot 'cond2.txt' using 1:6\n");
+	fprintf(out,"replot 'cond2.txt' using 1:7\n");
+	fprintf(out,"replot 'cond2.txt' using 1:8\n");
+	fprintf(out,"replot 'cond2.txt' using 1:9\n");
+	fprintf(out,"replot 'cond2.txt' using 1:10\n");
+	fprintf(out,"replot 'cond2.txt' using 1:11\n");
+	fprintf(out,"replot 'cond2.txt' using 1:12\n");
+	
+	fclose(out);
+
 	return 0;
 }
 

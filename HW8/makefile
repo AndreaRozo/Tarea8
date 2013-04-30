@@ -1,4 +1,7 @@
-run: cond1.txt cond2.txt
+run: GraficaCondInicial1.jpg GraficaCondInicial2.jpg
+
+GraficaCondInicial*.jpg: graphs.gp
+	gnuplot graphs.gp
 
 cond1.txt: Graf*_CondIn1.txt ejecutable.exe
 	paste VectorX_CondIn1.txt Graf*_CondIn1.txt > cond1.txt
