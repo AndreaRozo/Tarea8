@@ -136,43 +136,26 @@ int main(int argc, char **argv)
 
 	}
 
-	//Creación del archivo para graficar
-	FILE *out;
-	out = fopen("graphs.gp",'w');
-	fprintf(out,"set terminal jpeg\n");
-	fprintf(out,"set output 'GraficaCondInicial1.jpg'\n");
-	fprintf(out,"set title "Caso 1"\n");
-	fprintf(out,"set xlabel "x"\n");
-	fprintf(out,"set ylabel "u"\n");
-	fprintf(out,"plot 'cond1.txt' using 1:2\n");
-	fprintf(out,"replot 'cond1.txt' using 1:3\n");
-	fprintf(out,"replot 'cond1.txt' using 1:4\n");
-	fprintf(out,"replot 'cond1.txt' using 1:5\n");
-	fprintf(out,"replot 'cond1.txt' using 1:6\n");
-	fprintf(out,"replot 'cond1.txt' using 1:7\n");
-	fprintf(out,"replot 'cond1.txt' using 1:8\n");
-	fprintf(out,"replot 'cond1.txt' using 1:9\n");
-	fprintf(out,"replot 'cond1.txt' using 1:10\n");
-	fprintf(out,"replot 'cond1.txt' using 1:11\n");
-	fprintf(out,"replot 'cond1.txt' using 1:12\n");
+	//Creación de los archivos para graficar
+	FILE *out1;
+	out1 = fopen("graph1.gp","w");
+	fprintf(out1,"set terminal jpeg\n");
+	fprintf(out1,"set output 'GraficaCondInicial1.jpg'\n");
+	fprintf(out1,"set title \"Caso 1\"\n");
+	fprintf(out1,"set xlabel \"x\"\n");
+	fprintf(out1,"set ylabel \"u\"\n");
+	fprintf(out1,"plot 'cond1.txt' using 1:2, '' using 1:3, '' using 1:4, '' using 1:5, '' using 1:6, '' using 1:7, ''using 1:8, '' using 1:9, '' using 1:10, '' using 1:11, '' using 1:12\n");
+	fclose(out1);
 
-	fprintf(out,"set output 'GraficaCondInicial2.jpg'\n");
-	fprintf(out,"set title "Caso 2"\n");
-	fprintf(out,"set xlabel "x"\n");
-	fprintf(out,"set ylabel "u"\n");
-	fprintf(out,"plot 'cond2.txt' using 1:2\n");
-	fprintf(out,"replot 'cond2.txt' using 1:3\n");
-	fprintf(out,"replot 'cond2.txt' using 1:4\n");
-	fprintf(out,"replot 'cond2.txt' using 1:5\n");
-	fprintf(out,"replot 'cond2.txt' using 1:6\n");
-	fprintf(out,"replot 'cond2.txt' using 1:7\n");
-	fprintf(out,"replot 'cond2.txt' using 1:8\n");
-	fprintf(out,"replot 'cond2.txt' using 1:9\n");
-	fprintf(out,"replot 'cond2.txt' using 1:10\n");
-	fprintf(out,"replot 'cond2.txt' using 1:11\n");
-	fprintf(out,"replot 'cond2.txt' using 1:12\n");
-	
-	fclose(out);
+	FILE *out2;
+	out2 = fopen("graph2.gp","w");
+	fprintf(out2,"set terminal jpeg\n");
+	fprintf(out2,"set output 'GraficaCondInicial2.jpg'\n");
+	fprintf(out2,"set title \"Caso 2\"\n");
+	fprintf(out2,"set xlabel \"x\"\n");
+	fprintf(out2,"set ylabel \"u\"\n");
+	fprintf(out2,"plot 'cond2.txt' using 1:2, '' using 1:3, '' using 1:4, '' using 1:5, '' using 1:6, '' using 1:7, ''using 1:8, '' using 1:9, '' using 1:10, '' using 1:11, '' using 1:12\n");
+	fclose(out2);
 
 	return 0;
 }
