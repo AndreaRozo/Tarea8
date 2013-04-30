@@ -1,12 +1,12 @@
 run: cond1.txt cond2.txt
+	gnuplot graph1.gp
+	gnuplot graph2.gp
 
 cond1.txt: Graf*_CondIn1.txt ejecutable.exe
 	paste VectorX_CondIn1.txt Graf*_CondIn1.txt > cond1.txt
-	gnuplot graph1.gp
 
 cond2.txt: Graf*_CondIn2.txt ejecutable.exe
 	paste VectorX_CondIn2.txt Graf*_CondIn2.txt > cond2.txt
-	gnuplot graph2.gp
 
 Graf*_CondIn1.txt: ejecutable.exe
 	./ejecutable.exe 0 1 0 3 0.00005 0.0125 1
